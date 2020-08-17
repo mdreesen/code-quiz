@@ -44,6 +44,7 @@ let questions = [{
     },
     {
         question: "Would you rather have all farts be silent but EXTREMELY deadly, or all farts be harmless but EXTREMELY loud?",
+        imgSrc: "img/screenshot.png",
         choiceA: "all farts be silent but EXTREMELY deadly",
         choiceB: "all farts be harmless but EXTREMELY loud",
         choiceC: "I'm done",
@@ -68,7 +69,7 @@ let score = 0;
 
 // render a question
 function renderQuestion() {
-    // making the variable q so that we dont have to type in this line again
+    // making the variable q so that we don't have to type in this line again
     let q = questions[onQ];
 
     // Insert each question "p" element to the HTML
