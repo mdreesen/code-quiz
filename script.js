@@ -39,7 +39,7 @@ let questions = [{
         imgSrc: "img/js.png",
         choiceA: "Variable means anything that can vary",
         choiceB: "What is a variable?",
-        choiceC: "Is this a science question?",
+        choiceC: "Isn't this a science question?",
         correct: "A"
     },
     {
