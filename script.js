@@ -24,9 +24,11 @@ $(document).ready(function() {
         }
     ]
 
+
+    var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
     var pointer = 0;
     var score = 0;
-    var timer = 60;
+    var timer = 1000;
     var timerId;
 
     $("#quiz").hide();
@@ -51,7 +53,9 @@ $(document).ready(function() {
             clearInterval(timerId);
             // work with timer to make sure quiz stops at 0
             if (timer === 0) {
-
+                // just display score
+                localStorage.setItem('recentScore', score);
+                location.replace('highScore.html');
             }
 
             // check for high score
@@ -101,22 +105,32 @@ $(document).ready(function() {
 
     function save() {
         var saveInput = $('#userName').val();
-        console.log(saveInput);
         var saveFinalScore = localStorage.getItem('recentScore');
         // retreivinng the list of scores from localStorage
-        var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-        console.log(saveFinalScore);
 
-        // -=- how to reconfigure, grab by the name of the user and many users that have done the quiz -=-
-        //splice(saveFinalScore, saveInput);
+        highScores.push({
+                name: saveInput,
+                score: saveFinalScore
+            })
+            // -=- how to reconfigure, grab by the name of the user and many users that have done the quiz -=-
+            //splice(saveFinalScore, saveInput);
 
+        renderScores('name ' + 'score')
+
+        localStorage.setItem('highScores', JSON.stringify(highScores));
+
+    }
+
+    function renderScores() {
+        $('#scoreInfo').empty()
         for (var i = 0; i < highScores.length; i++) {
+            var highScore = highScores[i]
             var p = $('<p>');
-            p.text(saveInput);
-            p.append(saveFinalScore);
+            p.text(highScore.name);
+            p.append(highScore.score);
+            console.log(p.append)
             $('#scoreInfo').append(p);
         }
-        localStorage.setItem(saveInput, saveFinalScore);
     }
 
     $('#saveButton').on("click", function(e) {
@@ -124,6 +138,7 @@ $(document).ready(function() {
     });
 
     things();
+    renderScores()
 
     timerId = setInterval(countDown, 1000);
     timer === 0, clearInterval();
