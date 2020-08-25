@@ -28,7 +28,7 @@ $(document).ready(function() {
     var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
     var pointer = 0;
     var score = 0;
-    var timer = 1000;
+    var timer = 60;
     var timerId;
 
     $("#quiz").hide();
@@ -115,7 +115,7 @@ $(document).ready(function() {
             // -=- how to reconfigure, grab by the name of the user and many users that have done the quiz -=-
             //splice(saveFinalScore, saveInput);
 
-        renderScores('name ' + 'score')
+        renderScores('name ' + 'score');
 
         localStorage.setItem('highScores', JSON.stringify(highScores));
 
